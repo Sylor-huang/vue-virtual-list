@@ -108,7 +108,7 @@ class Virtual {
     if (this.calcType !== CALC_TYPE.FIXED && typeof this.firstRangeTotalSize !== 'undefined') {
       if (this.sizes.size < Math.min(this.param.keeps, this.param.uniqueIds.length)) {
         this.firstRangeTotalSize = [...this.sizes.values()].reduce((acc, val) => acc + val, 0);
-        this.firstRangeAverageSize = Math.round(this.firstRangeTotalSize / this.sizes.size);
+        this.firstRangeAverageSize = Math.round(this.firstRangeTotalSize / this.sizes.size / this.param.lineNumber);
       } else {
         // it's done using
         delete this.firstRangeTotalSize;
@@ -117,7 +117,7 @@ class Virtual {
   }
 
   getTotalSize() {
-    return [...this.sizes.values()].reduce((acc, val) => acc + val, 0);
+    return [...this.sizes.values()].reduce((acc, val) => (acc + val) / this.param.lineNumber, 0);
   } // in some special situation (e.g. length change) we need to update in a row
   // try goiong to render next range by a leading buffer according to current direction
 
@@ -311,7 +311,7 @@ class Virtual {
 
 
   getEstimateSize() {
-    return this.isFixedType() ? this.fixedSizeValue : this.firstRangeAverageSize || this.param.estimateSize;
+    return this.isFixedType() ? this.fixedSizeValue / this.param.lineNumber : this.firstRangeAverageSize || this.param.estimateSize;
   }
 
 }
@@ -1093,6 +1093,10 @@ const VirtualProps = {
   },
   itemScopedSlots: {
     type: Object
+  },
+  lineNumber: {
+    type: Number,
+    default: 1
   }
 };
 const ItemProps = {

@@ -116,7 +116,7 @@ export default class Virtual {
                     0,
                 );
                 this.firstRangeAverageSize = Math.round(
-                    this.firstRangeTotalSize / this.sizes.size,
+                    this.firstRangeTotalSize / this.sizes.size / this.param.lineNumber,
                 );
             } else {
                 // it's done using
@@ -126,7 +126,7 @@ export default class Virtual {
     }
 
     getTotalSize () {
-        return [...this.sizes.values()].reduce((acc, val) => acc + val, 0);
+        return [...this.sizes.values()].reduce((acc, val) => (acc + val) / this.param.lineNumber, 0);
     }
 
     // in some special situation (e.g. length change) we need to update in a row
@@ -320,7 +320,7 @@ export default class Virtual {
     // get the item estimate size
     getEstimateSize () {
         return this.isFixedType()
-            ? this.fixedSizeValue
+            ? (this.fixedSizeValue / this.param.lineNumber)
             : this.firstRangeAverageSize || this.param.estimateSize;
     }
 }

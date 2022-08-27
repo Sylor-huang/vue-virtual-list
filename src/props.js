@@ -102,6 +102,10 @@ export const VirtualProps = {
     itemScopedSlots: {
         type: Object,
     },
+    lineNumber: {
+        type: Number,
+        default: 1,
+    },
 };
 
 export const ItemProps = {
