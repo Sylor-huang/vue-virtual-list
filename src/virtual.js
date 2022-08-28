@@ -126,7 +126,7 @@ export default class Virtual {
     }
 
     getTotalSize () {
-        return [...this.sizes.values()].reduce((acc, val) => (acc + val) / this.param.lineNumber, 0);
+        return [...this.sizes.values()].reduce((acc, val) => acc + val, 0);
     }
 
     // in some special situation (e.g. length change) we need to update in a row
