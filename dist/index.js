@@ -118,6 +118,7 @@ class Virtual {
 
   getTotalSize() {
     console.log('this.sizes.values()', [...this.sizes.values()]);
+    console.log('this.param.lineNumber', this.param.lineNumber);
     return [...this.sizes.values()].reduce((acc, val) => (acc + val) / this.param.lineNumber, 0);
   } // in some special situation (e.g. length change) we need to update in a row
   // try goiong to render next range by a leading buffer according to current direction
