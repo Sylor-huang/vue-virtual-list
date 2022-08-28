@@ -71,6 +71,7 @@ export default defineComponent({
                     slotFooterSize: 0,
                     keeps: props.keeps,
                     estimateSize: props.estimateSize,
+                    lineNumber: props.lineNumber,
                     buffer: Math.round(props.keeps / 3), // recommend for a third of keeps
                     uniqueIds: getUniqueIdFromDataSources(),
                 },
