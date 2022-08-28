@@ -126,6 +126,7 @@ export default class Virtual {
     }
 
     getTotalSize () {
+        console.log('this.sizes.values()', [...this.sizes.values()])
         return [...this.sizes.values()].reduce((acc, val) => (acc + val) / this.param.lineNumber, 0);
     }
 
