@@ -42,6 +42,10 @@ export default defineComponent({
 
         const fullHeight = computed(() => {
             const { padBehind } = rangeRef.value;
+            console.log('padBehind', padBehind)
+            console.log('virtual.getEstimateSize()', virtual.getEstimateSize())
+            console.log('props.dataSources.length', props.dataSources.length)
+            console.log('virtual.getTotalSize()', virtual.getTotalSize())
             if (padBehind !== 0) {
                 return (
                     virtual &&
